@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(cpp|hpp)$' || true)
+
+# clang-format
+if [[ -n "$STAGED" ]]; then
+    echo "clang-format..."
+    while IFS= read -r file; do
+        clang-format --dry-run --Werror "$file"
+    done <<< "$STAGED"
+fi
+
+# clang-tidy
+STAGED_CPP=$(echo "$STAGED" | grep -E '\.cpp$' || true)
+if [[ -n "$STAGED_CPP" ]]; then
+    echo "clang-tidy..."
+    while IFS= read -r file; do
+        clang-tidy -p build "$file"
+    done <<< "$STAGED_CPP"
+fi
+
+# compile
+echo "building..."
+cmake --build build
