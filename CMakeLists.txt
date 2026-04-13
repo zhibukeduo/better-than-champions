@@ -14,3 +14,18 @@ file(GLOB_RECURSE SOURCES src/*.cpp)
 add_executable(better-than-champions ${SOURCES})
 
 target_include_directories(better-than-champions PRIVATE src)
+
+# Testing
+include(FetchContent)
+FetchContent_Declare(
+    doctest
+    GIT_REPOSITORY https://github.com/doctest/doctest.git
+    GIT_TAG v2.5.1
+)
+FetchContent_MakeAvailable(doctest)
+
+file(GLOB_RECURSE TEST_SOURCES tests/*.cpp)
+
+add_executable(tests ${TEST_SOURCES})
+target_include_directories(tests PRIVATE src)
+target_link_libraries(tests PRIVATE doctest_with_main)
