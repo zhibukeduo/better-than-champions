@@ -19,9 +19,7 @@ class Stage {
     constexpr Stage(stat_stage stage) : _stage(clamp(stage)) {}
 
     [[nodiscard]] constexpr auto value() const -> stat_stage { return _stage; }
-    [[nodiscard]] constexpr auto index() const -> stat_stage {
-        return static_cast<stat_stage>(_stage - MIN);
-    }
+    [[nodiscard]] constexpr auto index() const -> u8 { return static_cast<u8>(_stage - MIN); }
 
     auto modify_by(stat_stage stage) -> void {
         _stage = clamp(static_cast<stat_stage>(_stage + stage));

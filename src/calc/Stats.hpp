@@ -19,16 +19,16 @@ struct StatInput {
 constexpr auto calc_hp(const StatInput &si) -> effective_stat {
     using primitives::Ratio;
 
-    u16 inner = (2U * si.base) + si.iv + (si.ev / 4U);
-    return static_cast<effective_stat>(Ratio<u8>::from_percent(si.level).multiplied_by(inner) +
-                                       si.level + 10U);
+    const u16 inner  = (2U * si.base) + si.iv + (si.ev / 4U);
+    const u16 result = Ratio<u8>::from_percent(si.level).multiplied_by(inner) + si.level + 10U;
+    return static_cast<effective_stat>(result);
 }
 
 constexpr auto calc_stat(const StatInput &si, ids::Nature nature, ids::NatureStat stat)
     -> effective_stat {
     using primitives::Ratio;
 
-    u16 inner = static_cast<u16>(
+    const u16 inner = static_cast<u16>(
         Ratio<u8>::from_percent(si.level).multiplied_by((2U * si.base) + si.iv + (si.ev / 4U)) +
         5U);
     return steps::apply_nature(static_cast<effective_stat>(inner), nature, stat);

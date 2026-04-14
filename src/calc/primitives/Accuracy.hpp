@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Percent.hpp"
+#include "calc/primitives/Percent.hpp"
 
 #include <algorithm>
 #include <cassert>

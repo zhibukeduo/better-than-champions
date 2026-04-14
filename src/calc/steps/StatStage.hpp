@@ -18,7 +18,7 @@ constexpr auto crit_aware_stage(effective_stat stat, stat_stage raw, bool is_cri
 
     if (is_crit) {
         // ignore negative attack stages and positive defense stages
-        bool favourable = is_attack ? (raw > 0) : (raw < 0);
+        const bool favourable = is_attack ? (raw > 0) : (raw < 0);
         if (!favourable) {
             return stat;
         }
