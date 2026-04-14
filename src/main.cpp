@@ -8,6 +8,4 @@ auto main() -> int {
     (void)data::SPECIES_DATA_TABLE;
     (void)data::MOVE_DATA_TABLE;
     (void)data::MONSET_DATA_TABLE;
-
-    return 0;
 }

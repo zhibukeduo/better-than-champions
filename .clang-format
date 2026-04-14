@@ -9,6 +9,9 @@ UseTab: Never
 
 BreakBeforeBraces: Attach
 
+SpacesInContainerLiterals: true
+Cpp11BracedListStyle: false
+
 SortIncludes: true
 IncludeBlocks: Regroup
 IncludeCategories:

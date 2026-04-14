@@ -16,10 +16,25 @@ STAGED_CPP=$(echo "$STAGED" | grep -E '\.cpp$' || true)
 if [[ -n "$STAGED_CPP" ]]; then
     echo "clang-tidy..."
     while IFS= read -r file; do
-        clang-tidy -p build "$file"
+        clang-tidy -p build --quiet "$file"
     done <<< "$STAGED_CPP"
+fi
+
+# nolint explanation check
+if [[ -n "$STAGED" ]]; then
+    echo "nolint explanation check..."
+    violations=$(echo "$STAGED" | xargs grep -nH 'NOLINT' | grep -v 'NOLINTEND' | grep -vE 'NOLINT[A-Z]*\([^)]+\)\s*-' || true)
+    if [[ -n "$violations" ]]; then
+        echo "NOLINT comments must have a check name and explanation: NOLINT(check-name) - reason"
+        echo "$violations"
+        exit 1
+    fi
 fi
 
 # compile
 echo "building..."
 cmake --build build
+
+# test
+echo "testing..."
+./build/tests -q

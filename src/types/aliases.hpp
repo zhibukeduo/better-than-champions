@@ -10,4 +10,6 @@ using s8  = int8_t;
 using s16 = int16_t;
 using s32 = int32_t;
 
-using base_stat = u8;
+using base_stat      = u8;
+using stat_stage     = s8;
+using effective_stat = u16;

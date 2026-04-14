@@ -10,7 +10,7 @@ using species_table = util::Array<models::Species, ids::SPECIES_COUNT>;
 inline constexpr species_table SPECIES_DATA_TABLE = []() -> species_table {
     using p = ids::Species;
     using t = ids::Type;
-    using s = models::BaseStat;
+    using s = models::base_stats;
 
     // clang-format off
     // NOLINTBEGIN(modernize-use-designated-initializers) - keep table within viewport

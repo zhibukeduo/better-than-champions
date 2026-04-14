@@ -2,7 +2,7 @@
 
 #include "types/ids/Species.hpp"
 #include "types/ids/Type.hpp"
-#include "types/models/BaseStat.hpp"
+#include "types/models/StatBlock.hpp"
 
 namespace models {
 
@@ -11,7 +11,7 @@ struct Species {
     ids::Type    type1;
     ids::Type    type2;
 
-    BaseStat stats;
+    base_stats stats;
 };
 
 } // namespace models

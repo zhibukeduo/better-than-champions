@@ -1,10 +1,13 @@
-#include "types/models/BaseStat.hpp"
+#include "types/models/StatBlock.hpp"
+#include "util/Array.hpp"
 
 #include <doctest/doctest.h>
 
-TEST_CASE("BaseStat: constructor ordering") {
-    const models::base_stat_array stats = {1, 2, 3, 4, 5, 6};
-    const models::BaseStat        phony_mon(stats);
+// catch misordering shenanigans at the constructor seam
+
+TEST_CASE("StatBlock: constructor ordering") {
+    const util::Array<base_stat, ids::BASE_STAT_COUNT> stats = {{ 1, 2, 3, 4, 5, 6 }};
+    const models::base_stats phony_mon(stats);
 
     CHECK(phony_mon.hp() == 1);
     CHECK(phony_mon.attack() == 2);
