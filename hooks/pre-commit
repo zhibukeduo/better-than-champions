@@ -38,3 +38,11 @@ cmake --build build
 # test
 echo "testing..."
 ./build/tests -q
+
+# cross-compile (ce c/c++ toolchain)
+if command -v ez80-clang &>/dev/null; then
+    echo "cross-compiling (CE)..."
+    make -f makefile
+else
+    echo "warning: ez80-clang not on PATH. skipping!"
+fi
