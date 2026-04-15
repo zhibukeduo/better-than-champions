@@ -2,6 +2,8 @@
 
 a pokemon battle simulator for that special graphing calculator in your life.
 
+you should also check out the [banner artwork](src/main.cpp).
+
 ## cmake+make??
 
 develop/test on host with CMake, cross-compile intended target with make
